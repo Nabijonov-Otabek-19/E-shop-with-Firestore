@@ -12,7 +12,7 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.google.firebase.firestore.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import uz.nabijonov.otabek.online_shop.R
+import uz.nabijonov.otabek.online_shop.databinding.FragmentHomeBinding
 import uz.nabijonov.otabek.online_shop.model.CategoryModel
 import uz.nabijonov.otabek.online_shop.model.ProductModel
 import uz.nabijonov.otabek.online_shop.screen.MainViewModel
@@ -24,6 +24,8 @@ import uz.nabijonov.otabek.online_shop.view.ProductAdapter
 class HomeFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
 
     private lateinit var categoryList: ArrayList<CategoryModel>
     private lateinit var productList: ArrayList<ProductModel>
@@ -38,17 +40,18 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+    ): View {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        id_RV_categories.layoutManager =
+        binding.idRVCategories.layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
 
-        id_RV_topProducts.layoutManager = LinearLayoutManager(requireActivity())
+        binding.idRVTopProducts.layoutManager = LinearLayoutManager(requireActivity())
 
         categoryList = arrayListOf()
         productList = arrayListOf()
@@ -59,7 +62,7 @@ class HomeFragment : Fragment() {
 
         viewModel.offersData.observe(requireActivity()) {
             imageList.add(SlideModel(it, ScaleTypes.FIT))
-            image_slider.setImageList(imageList, ScaleTypes.FIT)
+            binding.imageSlider.setImageList(imageList, ScaleTypes.FIT)
         }
 
         viewModel.categoriesData.observe(requireActivity()) {
@@ -82,7 +85,7 @@ class HomeFragment : Fragment() {
                     productList.add(dc.document.toObject(ProductModel::class.java))
                 }
             }
-            id_RV_topProducts.adapter = ProductAdapter(productList)
+            binding.idRVTopProducts.adapter = ProductAdapter(productList)
         }
 
         loadData()

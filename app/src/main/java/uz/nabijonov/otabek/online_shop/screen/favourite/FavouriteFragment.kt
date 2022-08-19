@@ -9,8 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.DocumentChange
-import kotlinx.android.synthetic.main.fragment_favourite.*
-import uz.nabijonov.otabek.online_shop.R
+import uz.nabijonov.otabek.online_shop.databinding.FragmentFavouriteBinding
 import uz.nabijonov.otabek.online_shop.model.ProductModel
 import uz.nabijonov.otabek.online_shop.screen.MainViewModel
 import uz.nabijonov.otabek.online_shop.view.ProductAdapter
@@ -19,6 +18,9 @@ class FavouriteFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var productList: ArrayList<ProductModel>
+
+    private var _binding: FragmentFavouriteBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +35,7 @@ class FavouriteFragment : Fragment() {
         }
 
         viewModel.progress.observe(requireActivity()) {
-            id_FR_refresh.isRefreshing = it
+            binding.idFRRefresh.isRefreshing = it
         }
 
         viewModel.productsData.observe(requireActivity()) {
@@ -43,7 +45,7 @@ class FavouriteFragment : Fragment() {
                     productList.add(dc.document.toObject(ProductModel::class.java))
                 }
             }
-            id_RV_topProductsFav.adapter = ProductAdapter(productList)
+            binding.idRVTopProductsFav.adapter = ProductAdapter(productList)
         }
     }
 
@@ -51,18 +53,19 @@ class FavouriteFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_favourite, container, false)
+    ): View {
+        _binding = FragmentFavouriteBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        id_FR_refresh.setOnRefreshListener {
+        binding.idFRRefresh.setOnRefreshListener {
             loadData()
         }
 
-        id_RV_topProductsFav.layoutManager = LinearLayoutManager(requireActivity())
+        binding.idRVTopProductsFav.layoutManager = LinearLayoutManager(requireActivity())
 
         loadData()
 

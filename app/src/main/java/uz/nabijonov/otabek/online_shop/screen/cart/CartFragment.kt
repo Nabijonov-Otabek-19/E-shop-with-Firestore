@@ -9,8 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.DocumentChange
-import kotlinx.android.synthetic.main.fragment_cart.*
-import uz.nabijonov.otabek.online_shop.R
+import uz.nabijonov.otabek.online_shop.databinding.FragmentCartBinding
 import uz.nabijonov.otabek.online_shop.model.ProductModel
 import uz.nabijonov.otabek.online_shop.screen.MainViewModel
 import uz.nabijonov.otabek.online_shop.view.CartAdapter
@@ -19,6 +18,9 @@ class CartFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var productList: ArrayList<ProductModel>
+
+    private var _binding: FragmentCartBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +33,7 @@ class CartFragment : Fragment() {
         }
 
         viewModel.progress.observe(requireActivity()) {
-            id_CartRefresh.isRefreshing = it
+            binding.idCartRefresh.isRefreshing = it
         }
 
         viewModel.productsData.observe(requireActivity()) { data ->
@@ -41,26 +43,27 @@ class CartFragment : Fragment() {
                     productList.add(dc.document.toObject(ProductModel::class.java))
                 }
             }
-            id_RV_cart.adapter = CartAdapter(productList)
+            binding.idRVCart.adapter = CartAdapter(productList)
         }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_cart, container, false)
+    ): View {
+        _binding = FragmentCartBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        id_CartRefresh.setOnRefreshListener {
+        binding.idCartRefresh.setOnRefreshListener {
             loadData()
         }
 
 
-        id_RV_cart.layoutManager = LinearLayoutManager(requireActivity())
+        binding.idRVCart.layoutManager = LinearLayoutManager(requireActivity())
 
         loadData()
     }
