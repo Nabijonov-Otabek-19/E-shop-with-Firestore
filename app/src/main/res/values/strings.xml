@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Online shop</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="homeTitle">Home</string>
+    <string name="favoriteTitle">Favourite</string>
+    <string name="cartTitle">Cart</string>
+    <string name="profileTitle">Profile</string>
+    <string name="title_activity_maps">MapsActivity</string>
+</resources>

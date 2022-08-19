@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "132641082939",
+    "project_id": "online-shop-660a3",
+    "storage_bucket": "online-shop-660a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132641082939:android:1f8c4ae30f0008b18a161e",
+        "android_client_info": {
+          "package_name": "uz.nabijonov.otabek.online_shop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "132641082939-vqidck8c18jprf5j9r5e2m7b5t9bc3hn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA20HCRX6ndhQJf-yqapV8q6L1b34-dY5U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "132641082939-vqidck8c18jprf5j9r5e2m7b5t9bc3hn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
