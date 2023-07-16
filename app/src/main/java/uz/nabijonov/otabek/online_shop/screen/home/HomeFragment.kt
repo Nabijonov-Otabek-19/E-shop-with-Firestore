@@ -20,7 +20,6 @@ import uz.nabijonov.otabek.online_shop.view.CategoryAdapter
 import uz.nabijonov.otabek.online_shop.view.CategoryCallback
 import uz.nabijonov.otabek.online_shop.view.ProductAdapter
 
-
 class HomeFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
