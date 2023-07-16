@@ -1,17 +1,21 @@
 package uz.nabijonov.otabek.online_shop.screen.productdetail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.google.firebase.database.collection.LLRBNode
-import kotlinx.android.synthetic.main.activity_product_detail.*
+import kotlinx.android.synthetic.main.activity_product_detail.id_CV_back
+import kotlinx.android.synthetic.main.activity_product_detail.id_CV_love
+import kotlinx.android.synthetic.main.activity_product_detail.id_IV_love
+import kotlinx.android.synthetic.main.activity_product_detail.id_TV_ProductName
+import kotlinx.android.synthetic.main.activity_product_detail.id_TV_ProductPrice
+import kotlinx.android.synthetic.main.activity_product_detail.id_TV_Title
+import kotlinx.android.synthetic.main.activity_product_detail.id_btnAdd2Cart
+import kotlinx.android.synthetic.main.activity_product_detail.id_imgProduct
 import uz.nabijonov.otabek.online_shop.R
 import uz.nabijonov.otabek.online_shop.model.ProductModel
 import uz.nabijonov.otabek.online_shop.utils.Constants
 import uz.nabijonov.otabek.online_shop.utils.PrefUtils
-
 
 class ProductDetailActivity : AppCompatActivity() {
 
