@@ -8,3 +8,6 @@ I used this libraries in this project:
 5. Hawk
 6. MultiDex
 7. Repository
+
+
+Image Slider library -> https://github.com/denzcoskun/ImageSlideshow
